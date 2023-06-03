@@ -1,0 +1,49 @@
+plugins {
+    id 'java-library'
+    id 'java-gradle-plugin'
+    id 'maven-publish'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+//Gralde 7.0以上选择下面发布到本地
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId "com.github.running-libo"
+            artifactId project.name
+            version "1.0.0"
+            //如果是war包填写components.web，如果是jar包填写components.java
+            from components.java
+        }
+    }
+
+    repositories {
+        maven {
+            url = "../plugins"
+        }
+    }
+}
+
+//Gralde 7.0以下选择下面发布到本地
+//打包到本地或者远程maven库
+//apply plugin: 'maven'
+//uploadArchives {
+//    repositories {
+//        mavenDeployer {
+//            //这个就是配置这个自定义插件的classpath
+//            pom.groupId = 'com.github.running-libo'
+//            pom.artifactId = project.name
+//            pom.version = '1.0.0'
+//            //提交到远程服务器
+//            // repository(url:"仓库地址"){
+//            //    authentication(userName:'',password:'')
+//            // }
+//            //提交本地maven地址：../plugins
+//            repository(url: uri('../plugins'))
+//        }
+//    }
+//}

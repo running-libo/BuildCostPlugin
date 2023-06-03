@@ -1,9 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'com.github.buildcostplugin'
 }
 
-apply from: ".././funtrace.gradle"
+//apply from: ".././funtrace.gradle"
 
 android {
     namespace 'com.github.funtimeconsumption'
