@@ -1,4 +1,4 @@
-package com.github.buildcostplugin;
+package github
 
 import org.gradle.BuildListener;
 import org.gradle.BuildResult;

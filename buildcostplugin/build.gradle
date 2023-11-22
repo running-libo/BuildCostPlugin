@@ -1,49 +1,43 @@
 plugins {
-    id 'java-library'
+    id 'groovy'
     id 'java-gradle-plugin'
-    id 'maven-publish'
+    id 'com.gradle.plugin-publish'
 }
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
 }
 
-//Gralde 7.0以上选择下面发布到本地
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId "com.github.running-libo"
-            artifactId project.name
-            version "1.0.0"
-            //如果是war包填写components.web，如果是jar包填写components.java
-            from components.java
-        }
-    }
+version = '1.1.0'
+group = 'com.github.running-libo'
 
-    repositories {
-        maven {
-            url = "../plugins"
+gradlePlugin {
+    plugins {
+        buildcostplugin {
+            id = 'com.github.buildcostplugin'
+            implementationClass = 'com.github.buildcostplugin.BuildCostPlugin'
         }
     }
 }
 
-//Gralde 7.0以下选择下面发布到本地
-//打包到本地或者远程maven库
-//apply plugin: 'maven'
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            //这个就是配置这个自定义插件的classpath
-//            pom.groupId = 'com.github.running-libo'
-//            pom.artifactId = project.name
-//            pom.version = '1.0.0'
-//            //提交到远程服务器
-//            // repository(url:"仓库地址"){
-//            //    authentication(userName:'',password:'')
-//            // }
-//            //提交本地maven地址：../plugins
-//            repository(url: uri('../plugins'))
-//        }
-//    }
-//}
+pluginBundle {
+    website = 'https://github.com/running-libo/BuildCostPlugin'
+    vcsUrl = 'https://github.com/running-libo/BuildCostPlugin'
+    description = 'This is a compilation time statistics plugin.'
+
+    plugins {
+        buildcostplugin {
+            //这个id 必须和 xxx.properties 名字相同
+            //id的作用：apply plugin: "com.github.buildcostplugin"
+            id = 'com.github.buildcostplugin'
+
+            //这个名字没有什么用，相当于插件的作用，给开发看
+            displayName = 'This is a compilation time statistics plugin.'
+
+            //tag比较重要，搜索引擎需要
+            tags = ['androidStudio', 'plugin', 'gradle','buildcost']
+            version = '1.1.0'//这个版本是开发者后台看到的版本
+        }
+    }
+}
