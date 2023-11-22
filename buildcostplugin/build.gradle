@@ -10,34 +10,18 @@ dependencies {
 }
 
 version = '1.1.0'
-group = 'com.github.running-libo'
+group = 'io.github.runninglibo'
 
 gradlePlugin {
-    plugins {
-        buildcostplugin {
-            id = 'com.github.buildcostplugin'
-            implementationClass = 'com.github.buildcostplugin.BuildCostPlugin'
-        }
-    }
-}
-
-pluginBundle {
     website = 'https://github.com/running-libo/BuildCostPlugin'
     vcsUrl = 'https://github.com/running-libo/BuildCostPlugin'
-    description = 'This is a compilation time statistics plugin.'
-
     plugins {
         buildcostplugin {
-            //这个id 必须和 xxx.properties 名字相同
-            //id的作用：apply plugin: "com.github.buildcostplugin"
-            id = 'com.github.buildcostplugin'
-
-            //这个名字没有什么用，相当于插件的作用，给开发看
-            displayName = 'This is a compilation time statistics plugin.'
-
-            //tag比较重要，搜索引擎需要
-            tags = ['androidStudio', 'plugin', 'gradle','buildcost']
-            version = '1.1.0'//这个版本是开发者后台看到的版本
+            id = 'io.github.runninglibo.buildcostplugin'
+            implementationClass = 'github.BuildCostPlugin'
+            displayName = 'statistics plugin'
+            description = 'This is a compilation time statistics plugin.'
+            tags.set(['androidStudio','buildcost'])
         }
     }
 }
