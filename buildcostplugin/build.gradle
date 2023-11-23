@@ -10,14 +10,14 @@ dependencies {
 }
 
 version = '1.1.0'
-group = 'io.github.runninglibo'
+group = 'io.github.running-libo'
 
 gradlePlugin {
     website = 'https://github.com/running-libo/BuildCostPlugin'
     vcsUrl = 'https://github.com/running-libo/BuildCostPlugin'
     plugins {
         buildcostplugin {
-            id = 'io.github.runninglibo.buildcostplugin'
+            id = 'io.github.running-libo.buildcostplugin'
             implementationClass = 'github.BuildCostPlugin'
             displayName = 'statistics plugin'
             description = 'This is a compilation time statistics plugin.'
